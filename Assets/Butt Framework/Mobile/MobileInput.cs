@@ -66,7 +66,41 @@ namespace Butt.Mobile
                     return 0;
 
             }
+
         }
+       
+
+        [SerializeField] private SwipeInput swipeInput;
+
+        public static SwipeInput.Swipe GetSwipe(int _index)
+        {
+            if (!Initialised)
+            {
+                throw new InvalidOperationException("Mobile Input not initialised");
+            }
+            if (instance.swipeInput == null)
+            {
+                throw new InvalidOperationException("Swipe Input reference not set");
+            }
+
+            return instance.swipeInput.GetSwipe(_index);
+        }
+        public static void GetFlickData(out float _flickPower, out Vector2 _flickDirection)
+        {
+            if (!Initialised)
+            {
+                throw new InvalidOperationException("Mobile Input not initialised");
+            }
+            if (instance.swipeInput == null)
+            {
+                throw new InvalidOperationException("Swipe Input reference not set");
+            }
+            _flickPower = instance.swipeInput.FlickPower;
+            _flickDirection = instance.swipeInput.Flick;
+        }
+
+        
+
     }
 }
 
