@@ -12,10 +12,13 @@ public class MobileTest : MonoBehaviour
     private bool testJoystick = false;
     [SerializeField]
     private bool testSwipe = false;
+    [SerializeField]
+    private bool testGyro = false;
     // Start is called before the first frame update
     void Start()
     {
         MobileInput.Initialise();
+        
     }
 
     // Update is called once per frame
@@ -28,7 +31,7 @@ public class MobileTest : MonoBehaviour
         }
         if (testSwipe)
         {
-#if (UNITY_ANDROID || UNITY_IOS) && UUNITY_EDITOR
+#if (UNITY_ANDROID || UNITY_IOS) && UNITY_EDITOR
 //IOS AND ANDROID HERE
             
 #else
@@ -50,6 +53,20 @@ public class MobileTest : MonoBehaviour
             // Touch position emulation
             Vector2 touchPos = Input.mousePosition;
 #endif
+        }
+        if (testGyro)
+        {
+#if (UNITY_ANDROID || UNITY_IOS) && UNITY_EDITOR
+//IOS AND ANDROID HERE
+
+#else
+            //Gyro emulation
+            Quaternion gyroMouse = Quaternion.Euler(Input.mousePosition.x, Input.mousePosition.y, 0);
+            GyroInput.UnityGyro(gyroMouse);
+#endif
+
+
+
         }
 
     }
