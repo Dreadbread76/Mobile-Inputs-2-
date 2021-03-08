@@ -62,7 +62,7 @@ public class MobileTest : MonoBehaviour
 #else
             //Gyro emulation
             Quaternion gyroMouse = Quaternion.Euler(Input.mousePosition.x, Input.mousePosition.y, 0);
-            GyroInput.UnityGyro(gyroMouse);
+            GyroInput.changable.transform.rotation = gyroMouse;
 #endif
 
 

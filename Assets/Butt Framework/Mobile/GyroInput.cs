@@ -9,12 +9,13 @@ namespace Butt.Mobile
     {
 
        
-        public GameObject changable;
+        public static GameObject changable;
 
         // Start is called before the first frame update
         private void Start()
         {
             changable = this.gameObject;
+            Input.gyro.enabled = true;
             
         }
         public void Update()
@@ -25,7 +26,7 @@ namespace Butt.Mobile
         }
 
         // Update is called once per frame
-        void GyroRotatesGameObject()
+        public void GyroRotatesGameObject()
         {
             changable.transform.rotation = UnityGyro(Input.gyro.attitude);
             
